@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <!-- Самая важная строчка для того, чтобы мобилки понимали масштаб сайта -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER SNEAKERS | Преміальний Кастом</title>
+    
+    <!-- Подключаем геймерские шрифты -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0c20, #15102a, #06101e);
+            color: #ffffff;
+            font-family: 'Ubuntu', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            overflow-y: auto; /* Прокрутка сайта */
+        }
+
+        /* КОМПЬЮТЕРНАЯ СЕТКА: Карточка и форма стоят РЯДОМ */
+        .top-section {
+            display: flex;
+            gap: 40px;
+            max-width: 950px;
+            width: 100%;
+            justify-content: center;
+            align-items: stretch;
+            margin-bottom: 50px;
+            animation: fadeInUp 1.2s ease-on-out;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(46, 204, 113, 0.15);
+            flex: 1;
+            max-width: 450px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .form-block {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(46, 204, 113, 0.15);
+            flex: 1;
+            max-width: 450px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .catalog-container {
+            width: 100%;
+            max-width: 950px;
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeInUp 1.5s ease-on-out;
+        }
+
+        /* КОМПЬЮТЕРНАЯ СЕТКА КАТАЛОГА: Карточки стоят В РЯД */
+        .catalog-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .catalog-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 25px 20px;
+            border-radius: 15px;
+            flex: 1;
+            min-width: 260px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        .catalog-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(46, 204, 113, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2ecc71;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #2ecc71;
+            text-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+        }
+
+        h1 { font-size: 28px; margin: 0 0 10px 0; }
+        h2 { font-size: 24px; margin-bottom: 30px; }
+        h4 { margin: 10px 0; font-size: 18px; }
+
+        p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #e2e2e8;
+            margin: 0 0 25px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        li {
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background-color: #2ecc71;
+            color: #ffffff;
+            padding: 14px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .btn-link:hover {
+            background-color: #27ae60;
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.5);
+            transform: translateY(-3px);
+        }
+
+        label {
+            color: #a0a0b8;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Ubuntu', sans-serif;
+            outline: none;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #2ecc71;
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Ubuntu', sans-serif;
+            margin-top: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2);
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #27ae60, #219653);
+            transform: translateY(-2px);
+        }
+
+        .tag {
+            font-weight: bold;
+            padding: 5px 10px;
+            display: inline-block;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ======================================================= */
+        /* 🔥 ТЕМА №8: МОБИЛЬНАЯ АДАПТАЦИЯ (МЕДИА-ЗАПРОСЫ) 🔥       */
+        /* ======================================================= */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px; /* Уменьшаем отступы от краев экрана телефона */
+            }
+
+            /* Карточка и форма встают ДРУГ ПОД ДРУГА (в столбик) */
+            .top-section {
+                flex-direction: column;
+                align-items: center;
+                gap: 25px;
+            }
+
+            .profile-card, .form-block {
+                max-width: 100%;
+                padding: 30px 20px;
+            }
+
+            /* Уменьшаем шрифты для мобильных */
+            h1 { font-size: 24px; }
+            h2 { font-size: 20px; margin-bottom: 20px; }
+
+            /* Карточки каталога тоже встают В СТОЛБИК */
+            .catalog-grid {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .catalog-item {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- СЕКЦИЯ 1: ВЕРХНИЙ БЛОК -->
+    <div class="top-section">
+        
+        <div class="profile-card">
+            <img src="https://unsplash.com" alt="Avatar" class="avatar">
+            <h1>SNEAKERS</h1>
+            <p>Преміальні кастомні кросівки з підсвіткою. Ексклюзивний дизайн. Бездоганна якість. Створені вражати.</p>
+            <ul>
+                <li>Унікальний кастом</li>
+                <li>12 годин підсвітки</li>
+                <li>Преміум матеріали</li>
+            </ul>
+            <a href="#" class="btn-link">Купити кросівки</a>
+        </div>
+
+        <div class="form-block">
+            <h2>Оформити передзамовлення</h2>
+            <form id="orderForm" style="display: flex; flex-direction: column;">
+                <label>Ваше ім'я:</label>
+                <input type="text" placeholder="Введіть ваше ім'я" required>
+
+                <label>Ваш telephone для підтвердження:</label>
+                <input type="text" placeholder="@username або номер" required>
+
+                <button type="submit" class="btn-submit">Відправити заявку</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- СЕКЦИЯ 2: КАТАЛОГ ТОВАРОВ -->
+    <div class="catalog-container">
+        <h2>...НАШ КАТАЛОГ...</h2>
+        
+        <div class="catalog-grid">
+            
+            <div class="catalog-item">
+                <div class="tag" style="background: #2ecc71; color: #000;">MODEL X</div>
+                <h4>Cyber Neon Green</h4>
+                <p style="color: #a0a0b8; font-size: 14px; margin: 0;">Кастомна подошва з зеленою неоновою подсвіткою.</p>
+            </div>
+
+            <div class="catalog-item">
+                <div class="tag" style="background: #9b59b6; color: #fff;">MODEL Y</div>
+                <h4>Neon Purple Light</h4>
+                <p style="color: #a0a0b8; font-size: 14px; margin: 0;">Фиолетовое футуристичное свечение для ночного города.</p>
+            </div>
+
+            <div class="catalog-item">
+                <div class="tag" style="background: #e74c3c; color: #fff;">MODEL Z</div>
+                <h4>Cyberpunk Red</h4>
